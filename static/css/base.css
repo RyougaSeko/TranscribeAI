@@ -1,0 +1,28 @@
+body {
+    background-color: #F7F7F7;
+}
+
+.top-main {
+    padding: 30px 30px;
+}
+
+.nav-logo {
+    width: 40px;
+    height: 35px;
+}
+
+.index-url-input-container {
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #dae1e8;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 10%);
+}
+
+.index-url-input-wrapper {
+    margin: 10px 10px;
+}
+
+.index-serch-button {
+    margin: auto;
+}

@@ -1,9 +1,17 @@
-<div class="download_container">
+{% extends 'base.html' %}
+{% block main %}
+<main class="top-main">
+<div class="index-url-input-container">
+  <div class="index-url-input-wrapper">
     <form method="POST">
-        <div class="form-group">
-          <label for="formGroupExampleInput">Please insert a valid YouTube video URL</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" name="url">
+        <div class="index-form-button-wrapper d-flex p-2 justify-content-center">
+          <div class="form-group w-75">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" name="url">
+          </div>
+          <div class="index-serch-button-wrapper align-middle">
+            <button type="submit" class="btn btn-primary index-serch-button">Convert</button>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Convert</button>
-      </form>
-</div>
+    </form>
+</main>
+{% endblock %}
