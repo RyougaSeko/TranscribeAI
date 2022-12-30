@@ -5,7 +5,7 @@
   <div class="index-url-input-wrapper">
     <form method="POST">
         <div class="index-form-button-wrapper d-flex p-2 justify-content-center">
-          <div class="form-group w-75">
+          <div class="form-group w-100">
             <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" name="url">
           </div>
           <div class="index-serch-button-wrapper align-middle">
@@ -13,5 +13,32 @@
           </div>
         </div>
     </form>
+  </div>
+</div>
+  <div class="index-output-container">
+    <div class="index-output-title">
+      <div class="index-output-title-left">
+        <strong>英語</strong>
+      </div>
+      <div class="index-output-title-right">
+        <div class="index-translate-icon" style="display: flex;">
+          <svg class="icon--UyQC8 svgIcon--SYoRT" focusable="false" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 7L20 7M20 7L16 3M20 7L16 11M16 17L4 17M4 17L8 21M4 17L8 13">
+  
+            </path>
+          </svg>
+        </div>
+        <strong>日本語</strong>
+      </div>
+    </div>
+    <div class="index-output-wrapper">
+      <textarea class="index-output-textarea-right" rows="4" cols="50">
+        {{ transcripted_txt }}      
+      </textarea>
+      <textarea class="index-output-textarea-left" rows="4" cols="50">
+        {{ translated_txt }}
+      </textarea>
+    </div>
+  </div>
 </main>
 {% endblock %}
