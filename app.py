@@ -54,9 +54,6 @@ def hello():
 
         print('audio_name')
         print(audio_name)
-        audio = MP3(audio_name)
-        print (f"print (audio.info.length) = {audio.info.length}")
-
 
         while os.path.exists(audio_name) != True:
             print(f"os.path.exists(audio_name)={os.path.exists(audio_name)}")
