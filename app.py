@@ -33,9 +33,9 @@ def index():
         res = os.system(cmd)
 
         #mp3ファイルが完全にDLされるまで待機する処理を書きたい。
-        while res != 0:
-            print(res)
-            pass
+        # while res != 0:
+        #     print(res)
+        #     pass
 
         #音声のファイル名を習得
         file_list = glob.glob(
@@ -73,7 +73,7 @@ def index():
         text_path = f"download/{audio_name}.txt"
 
         #書き起こした英語の取得
-        f = open(text_path, 'r')
+        f = open(text_path, 'r', encoding="UTF-8")
         transcripted_txt = f.read()
         f.close()
 
