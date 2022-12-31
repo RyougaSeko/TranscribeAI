@@ -32,10 +32,10 @@ def index():
         cmd = "yt-dlp " + "-x --audio-format mp3 " + url
         res = os.system(cmd)
 
-        #mp3ファイルが完全にDLされるまで待機する処理を書きたい。
-        # while res != 0:
-        #     print(res)
-        #     pass
+        # mp3ファイルが完全にDLされるまで待機する処理を書きたい。
+        while res != 0:
+            print(res)
+            pass
 
         #音声のファイル名を習得
         file_list = glob.glob(
