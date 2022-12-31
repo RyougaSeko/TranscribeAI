@@ -20,7 +20,7 @@ if not checkDownLoadFolder:
 
 
 @app.route('/', methods=['GET', 'POST'])
-def hello():
+def index():
 
     if request.method == 'POST':
 
@@ -55,10 +55,13 @@ def hello():
         print('audio_name')
         print(audio_name)
 
+
         while os.path.exists(audio_name) != True:
             print(f"os.path.exists(audio_name)={os.path.exists(audio_name)}")
             time.sleep(1)
             pass
+
+        time.sleep(5)
 
         # whisperにかける
         transcribe.transribe(str(audio_name))
@@ -83,6 +86,15 @@ def hello():
         return render_template('index.html', transcripted_txt = transcripted_txt, translated_txt=translated_txt)
     else:
         return render_template('index.html')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        
+
+        return render_template('signup.html')
+    else:
+        return render_template('signup.html')
 
 if __name__ == '__main__':
     app.run()
