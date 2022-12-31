@@ -39,6 +39,6 @@ def transribe(fileName):
     print(outputTexts)
 
     # Write into a text file
-    with open(f"download/{fileName}.txt", "w") as f:
+    with open(f"download/{fileName}.txt", "w", encoding="UTF-8") as f:
         f.write(f"▼ Transcription of {fileName}\n")
         f.write(outputTexts)
