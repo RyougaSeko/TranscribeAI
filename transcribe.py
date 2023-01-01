@@ -1,6 +1,7 @@
 import os
 import whisper
 import torch
+import time
 
 model = whisper.load_model("base")
 
@@ -16,6 +17,8 @@ def transribe(fileName):
 
     outputTextsArr = []
     while audio.size > 0:
+        start = time.time()
+
         tirmedAudio = whisper.pad_or_trim(audio)
         # trimedArray.append(tirmedAudio)
         startIdx = tirmedAudio.size
@@ -34,6 +37,9 @@ def transribe(fileName):
 
         # print the recognized text
         outputTextsArr.append(result.text)
+
+        print(time.time() - start)
+
 
     outputTexts = ' '.join(outputTextsArr)
     print(outputTexts)

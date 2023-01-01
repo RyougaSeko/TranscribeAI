@@ -26,18 +26,20 @@ def index():
 
         url = request.form.get("url")
 
-        movie_id = url.split("watch?v=")[1].split("&ab_channel=")[0]
-
         #Youtube動画DL
         cmd = "yt-dlp " + "-x --audio-format mp3 " + url
         res = os.system(cmd)
 
-        # mp3ファイルが完全にDLされるまで待機する処理を書きたい。
-        while res != 0:
-            print(res)
-            pass
+        if res != 0:
+            return render_template('index.html', error_msg="無効なURLです")
 
         #音声のファイル名を習得
+        try:
+            movie_id = url.split("watch?v=")[1].split("&ab_channel=")[0]
+        except:
+            return render_template('index.html', error_msg="無効なURLです")
+
+
         file_list = glob.glob(
             "*" + movie_id + "*.mp3"
         )
@@ -52,16 +54,15 @@ def index():
         name_list = [os.path.basename(file) for file in file_list]
         audio_name = name_list[0]
 
-        print('audio_name')
-        print(audio_name)
-
+        if len(name_list) == 0:
+            return render_template('index.html', error_msg="無効なURLです")
 
         while os.path.exists(audio_name) != True:
             print(f"os.path.exists(audio_name)={os.path.exists(audio_name)}")
             time.sleep(1)
             pass
 
-        time.sleep(5)
+        time.sleep(1)
 
         # whisperにかける
         transcribe.transribe(str(audio_name))
