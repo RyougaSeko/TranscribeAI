@@ -433,6 +433,12 @@ body {
     }
 }
 
+
+.top-input-form {
+    width: 80% !important;
+    margin: auto;
+}
+
 /* ここまでtop画面 */
 
 
@@ -560,3 +566,5 @@ body {
   .w3 {
     transform: rotate3D(.5, 1, 2, 90deg);
   }
+
+  

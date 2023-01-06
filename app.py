@@ -6,7 +6,6 @@ import torch
 import transcribe
 import translate
 import glob
-from youtubesearchpython import *
 import time
 import subprocess
 from mutagen.mp3 import MP3
@@ -38,7 +37,6 @@ def index():
             movie_id = url.split("watch?v=")[1].split("&ab_channel=")[0]
         except:
             return render_template('index.html', error_msg="無効なURLです")
-
 
         file_list = glob.glob(
             "*" + movie_id + "*.mp3"
