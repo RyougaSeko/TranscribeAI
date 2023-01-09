@@ -67,20 +67,26 @@ def index():
 
         #30分以上の動画は最初の30分だけ切り取る
         audio = MP3(audio_name)
+        copy_audio_name=""
         if audio.info.length > 1800:
             sound = AudioSegment.from_file(audio_name, format="mp3")
             splitted_sound = sound[:1800000]
             
             #30分以上のmp3を削除
-            os.remove(audio_name)
+            copy_audio_name = audio_name
 
-            #splitした後のmp3を、もともとの名前で出力
+            audio_name = "Splitted_"+str(audio_name)
+
+            #splitした後のmp3を出力
             splitted_sound.export(audio_name, format="mp3")
 
         # whisperにかける
-        transcribe.transribe(str(audio_name))
+        transcribe.transribe(audio_name)
 
-        #動画の削除
+        #30分以上の動画の削除
+        if copy_audio_name != "":
+            os.remove(copy_audio_name)
+
         os.remove(audio_name)
 
         #書き起こしたtextのpathを習得
