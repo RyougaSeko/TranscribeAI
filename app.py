@@ -9,6 +9,8 @@ import glob
 import time
 import subprocess
 from mutagen.mp3 import MP3
+from pydub import AudioSegment
+
 
 app = Flask(__name__)
 
@@ -54,13 +56,26 @@ def index():
 
         if len(name_list) == 0:
             return render_template('index.html', error_msg="無効なURLです")
-
+        
+        #音声ファイル名が取得できるまでループ
         while os.path.exists(audio_name) != True:
             print(f"os.path.exists(audio_name)={os.path.exists(audio_name)}")
             time.sleep(1)
             pass
 
         time.sleep(1)
+
+        #30分以上の動画は最初の30分だけ切り取る
+        audio = MP3(audio_name)
+        if audio.info.length > 1800:
+            sound = AudioSegment.from_file(audio_name, format="mp3")
+            splitted_sound = sound[:1800000]
+            
+            #30分以上のmp3を削除
+            os.remove(audio_name)
+
+            #splitした後のmp3を、もともとの名前で出力
+            splitted_sound.export(audio_name, format="mp3")
 
         # whisperにかける
         transcribe.transribe(str(audio_name))
@@ -81,7 +96,7 @@ def index():
 
         #transcibeしたテキストの削除
         os.remove(text_path)
-
+        
         return render_template('index.html', transcripted_txt = transcripted_txt, translated_txt=translated_txt)
     else:
         return render_template('index.html')
