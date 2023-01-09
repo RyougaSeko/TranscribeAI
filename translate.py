@@ -1,6 +1,7 @@
 import requests
+import get_env
 
-API_KEY = 'a771d007-d6b5-2e6d-6142-b723dee6d399:fx' # 自身の API キーを指定
+DeepL_API_KEY = get_env.DeepL_API_KEY # 自身の API キーを指定
 
 def translation(path):
 
@@ -13,7 +14,7 @@ def translation(path):
 
     # パラメータの指定
     params = {
-                'auth_key' : API_KEY,
+                'auth_key' : DeepL_API_KEY,
                 'text' : text,
                 'source_lang' : source_lang, # 翻訳対象の言語
                 "target_lang": target_lang  # 翻訳後の言語
