@@ -13,6 +13,7 @@ def transribe(fileName):
         os.mkdir("download")
 
     # load audio and pad/trim it to fit 30 seconds
+    # 注意⇨完全にaudioをダウンロードしきった状態でないと切れる
     audio = whisper.load_audio(fileName)
 
     outputTextsArr = []
@@ -42,9 +43,13 @@ def transribe(fileName):
 
 
     outputTexts = ' '.join(outputTextsArr)
-    print(outputTexts)
+
+    #動画の削除
+    os.remove(fileName)
 
     # Write into a text file
     with open(f"download/{fileName}.txt", "w", encoding="UTF-8") as f:
         f.write(f"▼ Transcription of {fileName}\n")
         f.write(outputTexts)
+    
+    return "success"

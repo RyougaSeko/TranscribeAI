@@ -48,7 +48,7 @@ def index():
             #mp3ファイルを取得
             file_list = glob.glob(
                 "*" + movie_id + "*.mp3"
-        )
+            )
 
         # スクリプトを置いたフォルダ内に保存された音声ファイル名取得
         name_list = [os.path.basename(file) for file in file_list]
@@ -68,6 +68,7 @@ def index():
         #30分以上の動画は最初の30分だけ切り取る
         audio = MP3(audio_name)
         copy_audio_name=""
+
         if audio.info.length > 1800:
             sound = AudioSegment.from_file(audio_name, format="mp3")
             splitted_sound = sound[:1800000]
@@ -80,14 +81,26 @@ def index():
             #splitした後のmp3を出力
             splitted_sound.export(audio_name, format="mp3")
 
+        #MP3への変換をtranscribeの処理が追い越さないようにsleepさせる。
+        file_list = glob.glob(
+            "*" + movie_id + "*.webm"
+        )
+
+        # webmが削除されたら、次へ行く
+        while len(file_list) != 0:
+
+            file_list = glob.glob(
+            "*" + movie_id + "*.webm"
+            )
+
+            time.sleep(1)
+
         # whisperにかける
         transcribe.transribe(audio_name)
 
-        #30分以上の動画の削除
+        # 30分以上の動画の削除
         if copy_audio_name != "":
             os.remove(copy_audio_name)
-
-        os.remove(audio_name)
 
         #書き起こしたtextのpathを習得
         text_path = f"download/{audio_name}.txt"

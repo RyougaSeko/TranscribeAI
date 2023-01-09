@@ -21,7 +21,9 @@ def translation(path):
             }
 
     # リクエストを投げる
-    request = requests.post("https://api-free.deepl.com/v2/translate", data=params) # URIは有償版, 無償版で異なるため要注意
-    result = request.json()['translations'][0]['text']
+    # request = requests.post("https://api-free.deepl.com/v2/translate", data=params) # URIは有償版, 無償版で異なるため要注意
+    # result = request.json()['translations'][0]['text']
 
-    return result
+    # return result
+
+    return text
