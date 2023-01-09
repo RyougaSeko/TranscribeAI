@@ -33,6 +33,11 @@ sudo nginx -c /home/ubuntu/TranscribeAI/config/nginx.conf
 11.gunicornのバックグラウンドでの立ち上げ
 gunicorn app:app -c config/gunicorn_settings.py -D
 
+12.環境変数の設定
+.envに環境変数
+DeepL_API_KEY = ""を設定
+
+
 うまく行かないとき
 1.パスが通っているか確認
 2.gunicornからログの確認
