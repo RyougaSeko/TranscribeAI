@@ -45,9 +45,14 @@ body {
         display: none;
     }
 
+    .top-nav-logo {
+        margin-right: 999px;
+        display: none;
+    }
+
     .dl_headerMenu__proButton {
-        width: 85px !important;
-        font-size: 12px !important;
+        width: 80px !important;
+        font-size: 10px !important;
     }
 
     .top-navbar-title {
