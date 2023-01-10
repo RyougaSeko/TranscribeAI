@@ -41,6 +41,10 @@ body {
 
 @media (max-width: 480px) {
 
+    .nav-logo {
+        display: none;
+    }
+
     .dl_headerMenu__proButton {
         width: 85px !important;
         font-size: 12px !important;
