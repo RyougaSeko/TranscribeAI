@@ -132,9 +132,15 @@ def signup():
 @app.route('/top', methods=['GET', 'POST'])
 def top():
     if request.method == 'POST':
-        
 
-        return render_template('top.html')
+        mail_adress = request.form.get("email")
+
+        print(mail_adress)
+
+        with open('data/mail.txt', 'a') as f:
+            f.write(f"{str(mail_adress)}\n")
+
+        return render_template('success.html')
     else:
         return render_template('top.html')
 

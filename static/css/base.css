@@ -7,9 +7,56 @@ body {
 }
 
 .nav-logo {
-    width: 40px;
-    height: 35px;
+    width: 50x;
+    height: 50px;
 }
+
+.letter-logo {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+}
+
+.top-navbar-title {
+    font-size: 35px !important;
+    opacity: 90%;
+    margin: 0 40px !important;
+}
+
+.mojiokoshi{
+    font-size: 16px;
+    font-family: none;
+    display: block;
+    margin-top: -3px;
+    opacity: 60%;
+    text-align: center;
+    letter-spacing: 0px;
+}
+
+.top-navbar-item {
+    font-weight: bold;
+    font-size: larger;
+    opacity: 70%;
+}
+
+
+@media (max-width: 480px) {
+
+    .dl_headerMenu__proButton {
+        width: 85px !important;
+        font-size: 12px !important;
+    }
+
+    .top-navbar-title {
+        margin: 0 10px !important;
+    }
+    
+}
+
+.btn-primary {
+    background: #006494 !important;;
+    border-color: #006494 !important;
+}
+
 
 .index-url-input-container {
     border-radius: 10px;
@@ -146,6 +193,7 @@ body {
     text-align: center;
     margin-right: 10px;
     line-height: 1em;
+    height: 50px;
 
     display: inline-block;
     border-radius: 4px;
@@ -158,8 +206,8 @@ body {
     }
 
     .dl_headerMenu__proButton {
-        width: 100px;
-        font-size: 10px;
+        width: 130px;
+        font-size: 15px;
     }
 
 }
@@ -435,7 +483,7 @@ body {
 
 
 .top-input-form {
-    width: 80% !important;
+    width: 100% !important;
     margin: auto;
 }
 
