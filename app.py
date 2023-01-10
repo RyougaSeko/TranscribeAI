@@ -32,13 +32,16 @@ def index():
         res = os.system(cmd)
 
         if res != 0:
-            return render_template('index.html', error_msg="無効なURLです")
+            return render_template('index.html', error_msg="erro1 無効なURLです")
 
         #音声のファイル名を習得
         try:
             movie_id = url.split("watch?v=")[1].split("&ab_channel=")[0]
         except:
-            return render_template('index.html', error_msg="無効なURLです")
+            try:
+                movie_id = url.split("https://youtu.be/")[1]
+            except:
+                return render_template('index.html', error_msg="erro3 無効なURLです")
 
         file_list = glob.glob(
             "*" + movie_id + "*.mp3"
@@ -55,7 +58,7 @@ def index():
         audio_name = name_list[0]
 
         if len(name_list) == 0:
-            return render_template('index.html', error_msg="無効なURLです")
+            return render_template('index.html', error_msg="error4 無効なURLです")
         
         #音声ファイル名が取得できるまでループ
         while os.path.exists(audio_name) != True:
