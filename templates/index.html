@@ -4,11 +4,14 @@
 
 // youtube動画のurlの場合
 
-// 文字列に
-// www.youtube.com/watch?v=
-
   function loading() {
-    document.querySelector('#loading-wrapper').innerHTML = 
+
+    const url = document.querySelector(".url");
+    console.log(url.value)
+
+    if (url.value) {
+      
+      document.querySelector('#loading-wrapper').innerHTML = 
     `
     <div class="spinner-box">
       <div class="pulse-container">  
@@ -18,6 +21,7 @@
       </div>
     </div>
     `
+    }
     ;  }
 
 </script>
@@ -25,18 +29,50 @@
 <div class="index-url-input-container">
   <div class="index-url-input-wrapper">
     <form method="POST" needs-validation">
-        <div class="index-form-button-wrapper d-flex p-2 justify-content-center">
+        <div class="index-form-button-wrapper p-2 justify-content-center d-flex flex-column">
           <div class="form-group w-100">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="https://www.youtube.com/watch?v=AyOnug-3OKM&ab_channel=OpenAI" name="url" required>
+            <input type="text" class="form-control url" id="formGroupExampleInput" placeholder="https://www.youtube.com/watch?v=AyOnug-3OKM&ab_channel=OpenAI" name="url" required>
           </div>
-          <div class="index-serch-button-wrapper align-middle">
-            <button type="submit" class="btn btn-primary index-serch-button" onclick="loading()">Convert</button>
+
+          <div class="top-form-check-wrapper">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="model" id="flexRadioDefault1" value="tiny">
+              <label class="form-check-label" for="flexRadioDefault1">
+                tiny
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="model" id="flexRadioDefault1" value="base" checked>
+              <label class="form-check-label" for="flexRadioDefault1">
+                base
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="model" id="flexRadioDefault2" value="small">
+              <label class="form-check-label" for="flexRadioDefault2">
+                small
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="model" id="flexRadioDefault2" value="medium">
+              <label class="form-check-label" for="flexRadioDefault2">
+                medium
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="model" id="flexRadioDefault2" value="large">
+              <label class="form-check-label" for="flexRadioDefault2">
+                large
+              </label>
+            </div>
+          </div>
+          <div class="index-serch-button-wrapper align-middle float-end mt-3">
+            <button type="submit" class="btn btn-primary index-serch-button float-right" onclick="loading()">Convert</button>
           </div>
         </div>
         <p class="index_input_error">
           {{ error_msg }}
         </p>
-
     </form>
   </div>
 </div>

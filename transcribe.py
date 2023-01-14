@@ -3,9 +3,15 @@ import whisper
 import torch
 import time
 
-model = whisper.load_model("base")
 
-def transribe(fileName):
+def transribe(fileName, input_model):
+
+    print("pass1")
+
+    model = whisper.load_model(input_model)
+
+    print("pass3")
+
 
     # Add directory into content folder
     checkDownLoadFolder = os.path.exists("download")
@@ -15,6 +21,9 @@ def transribe(fileName):
     # load audio and pad/trim it to fit 30 seconds
     # 注意⇨完全にaudioをダウンロードしきった状態でないと切れる
     audio = whisper.load_audio(fileName)
+
+    print("pass2")
+
 
     outputTextsArr = []
     while audio.size > 0:

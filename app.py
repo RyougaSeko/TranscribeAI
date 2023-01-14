@@ -9,7 +9,8 @@ import glob
 import time
 import subprocess
 from mutagen.mp3 import MP3
-from pydub import AudioSegment
+from split_movie import split_movie
+
 
 
 app = Flask(__name__)
@@ -26,6 +27,7 @@ def index():
     if request.method == 'POST':
 
         url = request.form.get("url")
+        model = request.form.get("model")
 
         #Youtube動画DL
         cmd = "yt-dlp " + "-x --audio-format mp3 " + url
@@ -68,22 +70,6 @@ def index():
 
         time.sleep(1)
 
-        #30分以上の動画は最初の30分だけ切り取る
-        audio = MP3(audio_name)
-        copy_audio_name=""
-
-        if audio.info.length > 1800:
-            sound = AudioSegment.from_file(audio_name, format="mp3")
-            splitted_sound = sound[:1800000]
-            
-            #30分以上のmp3を削除
-            copy_audio_name = audio_name
-
-            audio_name = "Splitted_"+str(audio_name)
-
-            #splitした後のmp3を出力
-            splitted_sound.export(audio_name, format="mp3")
-
         #MP3への変換をtranscribeの処理が追い越さないようにsleepさせる。
         file_list = glob.glob(
             "*" + movie_id + "*.webm"
@@ -98,8 +84,15 @@ def index():
 
             time.sleep(1)
 
+        #30分以上の動画は最初の30分だけ切り取る
+        copy_audio_name = ""
+        
+        if MP3(audio_name).info.length > 1800:
+            copy_audio_name, audio_name = split_movie(audio_name, 1800000)
+
+        print(f"model={model}")
         # whisperにかける
-        transcribe.transribe(audio_name)
+        transcribe.transribe(audio_name, model)
 
         # 30分以上の動画の削除
         if copy_audio_name != "":
